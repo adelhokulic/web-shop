@@ -48,13 +48,13 @@ const ProductsPage = () => {
 				<div>
 					<h1 className="products-page__title">Web Shop</h1>
 					<p className="products-page__subtitle">
-						Pronađi proizvod i dodaj ga u korpu
+						Find a product and add it to your cart
 					</p>
 				</div>
 
 				<div className="products-page__filter">
 					<label htmlFor="category" className="products-page__label">
-						Kategorija
+						Category
 					</label>
 					<select
 						id="category"

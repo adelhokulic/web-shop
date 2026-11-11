@@ -17,14 +17,14 @@ const ProductCard = ({ product }) => {
 
 				<div className="product-card__meta">
 					<span className="product-card__rating">★ {product.rating}</span>
-					<span className="product-card__stock">Na stanju: {product.stock}</span>
+					<span className="product-card__stock">In stock: {product.stock}</span>
 				</div>
 
 				<div className="product-card__footer">
 					<p className="product-card__price">${product.price}</p>
-					{/* TODO (logika): onClick koji dodaje proizvod u korpu */}
+					{/* TODO (logic): onClick that adds the product to the cart */}
 					<button type="button" className="product-card__button">
-						Dodaj u korpu
+						Add to cart
 					</button>
 				</div>
 			</div>

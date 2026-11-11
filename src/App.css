@@ -1,4 +1,4 @@
-/* Boje na jednom mjestu, koriste ih sve komponente */
+/* Colors in one place, used by all components */
 :root {
 	--bg: #f8fafc;
 	--surface: #ffffff;
@@ -24,7 +24,7 @@ body {
 	padding: 2rem 1rem 4rem;
 }
 
-/* Naslov i izbor kategorije */
+/* Title and category select */
 .products-page__header {
 	display: flex;
 	flex-direction: column;
@@ -73,7 +73,7 @@ body {
 	outline-offset: 1px;
 }
 
-/* Poruke (greška, učitavanje, prazna lista) */
+/* Messages (error, loading, empty list) */
 .products-page__message {
 	padding: 1rem;
 	text-align: center;
@@ -87,7 +87,7 @@ body {
 	background: #fee2e2;
 }
 
-/* Mreža proizvoda: mobile first, 1 kolona pa sve više */
+/* Product grid: mobile first, 1 column and more on wider screens */
 .products-grid {
 	display: grid;
 	grid-template-columns: 1fr;
@@ -135,7 +135,7 @@ body {
 	box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
 }
 
-/* Slika */
+/* Image */
 .product-card__image-wrap {
 	position: relative;
 	aspect-ratio: 1 / 1;
@@ -163,7 +163,7 @@ body {
 	border-radius: 999px;
 }
 
-/* Tekst */
+/* Text */
 .product-card__body {
 	display: flex;
 	flex-direction: column;
@@ -184,7 +184,7 @@ body {
 	font-weight: 600;
 	line-height: 1.35;
 	color: var(--text);
-	/* naslov najviše u dva reda, da kartice budu iste visine */
+	/* title max two lines, so all cards have the same height */
 	display: -webkit-box;
 	-webkit-line-clamp: 2;
 	-webkit-box-orient: vertical;
@@ -203,7 +203,7 @@ body {
 	font-weight: 600;
 }
 
-/* Cijena i dugme su uvijek na dnu kartice */
+/* Price and button always stay at the bottom of the card */
 .product-card__footer {
 	display: flex;
 	align-items: center;
