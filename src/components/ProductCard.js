@@ -1,4 +1,7 @@
+import { useCart } from "../context/CartContext";
+
 const ProductCard = ({ product }) => {
+	const { dispatch } = useCart();
 	return (
 		<article className="product-card">
 			<div className="product-card__image-wrap">
@@ -22,7 +25,11 @@ const ProductCard = ({ product }) => {
 
 				<div className="product-card__footer">
 					<p className="product-card__price">${product.price}</p>
-					<button type="button" className="product-card__button">
+					<button
+						onClick={() => dispatch({ type: "ADD_ITEM", payload: product })}
+						type="button"
+						className="product-card__button"
+					>
 						Add to cart
 					</button>
 				</div>
