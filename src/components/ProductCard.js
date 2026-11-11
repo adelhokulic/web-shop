@@ -22,7 +22,6 @@ const ProductCard = ({ product }) => {
 
 				<div className="product-card__footer">
 					<p className="product-card__price">${product.price}</p>
-					{/* TODO (logic): onClick that adds the product to the cart */}
 					<button type="button" className="product-card__button">
 						Add to cart
 					</button>
