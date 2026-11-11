@@ -5,6 +5,9 @@ import {
 	loadCartData,
 } from "../reducers/cartReducer";
 
+export const free_shipping_price = 100;
+const shipping_cost = 10;
+
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
@@ -25,6 +28,12 @@ export const CartProvider = ({ children }) => {
 		(total, item) => total + item.quantity * item.price,
 		0,
 	);
+	const shippingCost = totalPrice >= free_shipping_price ? 0 : shipping_cost;
+	const totalOrderPrice = totalPrice + shippingCost;
+	const leftToFreeShipping = Math.max(
+		free_shipping_price - totalPrice,
+		0,
+	);
 	return (
 		<CartContext.Provider
 			value={{
@@ -32,6 +41,10 @@ export const CartProvider = ({ children }) => {
 				dispatch: cartDispatch,
 				totalItems,
 				totalPrice,
+				shippingCost,
+				totalOrderPrice,
+				leftToFreeShipping,
+				free_shipping_price,
 			}}
 		>
 			{children}

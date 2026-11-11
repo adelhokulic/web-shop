@@ -625,3 +625,49 @@ body {
 		display: inline;
 	}
 }
+
+/* ===== Free shipping ===== */
+
+.free-shipping {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	padding: 0.75rem;
+	background: var(--surface-muted);
+	border-radius: 10px;
+}
+
+.free-shipping__text {
+	margin: 0;
+	font-size: 0.85rem;
+	color: var(--text-muted);
+}
+
+.free-shipping__text strong {
+	color: var(--text);
+}
+
+.free-shipping__text--done {
+	font-weight: 600;
+	color: #15803d;
+}
+
+/* grey track + coloured fill; the fill width is set from JS */
+.free-shipping__bar {
+	height: 8px;
+	background: var(--border);
+	border-radius: 999px;
+	overflow: hidden;
+}
+
+.free-shipping__fill {
+	height: 100%;
+	background: var(--accent);
+	border-radius: 999px;
+	transition: width 0.3s ease;
+}
+
+.cart-summary__shipping {
+	font-weight: 600;
+	color: #15803d;
+}
