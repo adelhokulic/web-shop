@@ -1,14 +1,16 @@
 import { useCart } from "../context/CartContext";
+import { useCurrency } from "../context/CurrencyContext";
 
 const CartItem = ({ item }) => {
 	const { dispatch } = useCart();
+	const { priceFormatter } = useCurrency();
 	return (
 		<article className="cart-item">
 			<img className="cart-item__image" src={item.thumbnail} alt={item.title} />
 
 			<div className="cart-item__info">
 				<h2 className="cart-item__title">{item.title}</h2>
-				<p className="cart-item__price">${item.price}</p>
+				<p className="cart-item__price">{priceFormatter(item.price)}</p>
 				<p className="cart-item__stock">In stock: {item.stock}</p>
 			</div>
 
@@ -45,7 +47,7 @@ const CartItem = ({ item }) => {
 			</div>
 
 			<p className="cart-item__total">
-				${(item.price * item.quantity).toFixed(2)}
+				{priceFormatter(item.price * item.quantity)}
 			</p>
 
 			<button

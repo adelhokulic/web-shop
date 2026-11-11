@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import CartIcon from "./CartIcon";
+import CurrencySelect from "./CurrencySelect";
 
 const Navbar = () => {
 	return (
@@ -13,6 +14,7 @@ const Navbar = () => {
 					<Link to="/" className="site-nav__link">
 						Products
 					</Link>
+					<CurrencySelect />
 					<CartIcon />
 				</div>
 			</nav>

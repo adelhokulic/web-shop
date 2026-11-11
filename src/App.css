@@ -587,3 +587,41 @@ body {
 		grid-template-areas: "image info qty total remove";
 	}
 }
+
+/* ===== CurrencySelect ===== */
+
+.currency-select {
+	display: flex;
+	align-items: center;
+	gap: 0.4rem;
+}
+
+/* label is visible only on wider screens, to save space on mobile */
+.currency-select__label {
+	display: none;
+	font-size: 0.85rem;
+	font-weight: 600;
+	color: var(--text-muted);
+}
+
+.currency-select__select {
+	padding: 0.35rem 0.5rem;
+	font-size: 0.9rem;
+	font-weight: 600;
+	color: var(--text);
+	background: var(--surface-muted);
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	cursor: pointer;
+}
+
+.currency-select__select:focus {
+	outline: 2px solid var(--accent);
+	outline-offset: 1px;
+}
+
+@media (min-width: 576px) {
+	.currency-select__label {
+		display: inline;
+	}
+}

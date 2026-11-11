@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import CartItem from "../components/CartItem";
+import { useCurrency } from "../context/CurrencyContext";
 
 const CartPage = () => {
 	const { items, totalItems, totalPrice, dispatch } = useCart();
+	const { priceFormatter } = useCurrency();
 
 	const checkClearCart = () => {
 		const check = window.confirm("Are you sure you want to clear the cart?");
@@ -43,7 +45,7 @@ const CartPage = () => {
 
 						<div className="cart-summary__row cart-summary__row--total">
 							<span>Total</span>
-							<span>${totalPrice.toFixed(2)}</span>
+							<span>{priceFormatter(totalPrice)}</span>
 						</div>
 
 						<Link to="/" className="cart-summary__continue">

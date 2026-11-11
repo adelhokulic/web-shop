@@ -10,13 +10,19 @@ export const CurrencyContext = createContext();
 
 export const CurrencyProvider = ({ children }) => {
 	const [currency, setCurrency] = useState("USD");
+	const priceFormatter = (price) => {
+		const result = (price * currencies[currency].rate).toFixed(2);
+		return `${result} ${currencies[currency].symbol}`;
+	};
 
 	const updateCurrency = (newCurrency) => {
 		setCurrency(newCurrency);
 	};
 
 	return (
-		<CurrencyContext.Provider value={{ currency, updateCurrency }}>
+		<CurrencyContext.Provider
+			value={{ currency, updateCurrency, priceFormatter }}
+		>
 			{children}
 		</CurrencyContext.Provider>
 	);

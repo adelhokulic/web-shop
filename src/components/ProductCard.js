@@ -1,7 +1,9 @@
 import { useCart } from "../context/CartContext";
+import { useCurrency } from "../context/CurrencyContext";
 
 const ProductCard = ({ product }) => {
 	const { dispatch } = useCart();
+	const { priceFormatter } = useCurrency();
 	return (
 		<article className="product-card">
 			<div className="product-card__image-wrap">
@@ -24,7 +26,7 @@ const ProductCard = ({ product }) => {
 				</div>
 
 				<div className="product-card__footer">
-					<p className="product-card__price">${product.price}</p>
+					<p className="product-card__price">{priceFormatter(product.price)}</p>
 					<button
 						onClick={() => dispatch({ type: "ADD_ITEM", payload: product })}
 						type="button"
