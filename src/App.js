@@ -5,17 +5,20 @@ import ProductsPage from "./pages/ProductsPage";
 import { CartProvider } from "./context/CartContext";
 import Navbar from "./components/Navbar";
 import CartPage from "./pages/CartPage";
+import { CurrencyProvider } from "./context/CurrencyContext";
 
 function App() {
 	return (
 		<CartProvider>
-			<BrowserRouter>
-				<Navbar />
-				<Routes>
-					<Route path="/" element={<ProductsPage />} />
-					<Route path="/cart" element={<CartPage />} />
-				</Routes>
-			</BrowserRouter>
+			<CurrencyProvider>
+				<BrowserRouter>
+					<Navbar />
+					<Routes>
+						<Route path="/" element={<ProductsPage />} />
+						<Route path="/cart" element={<CartPage />} />
+					</Routes>
+				</BrowserRouter>
+			</CurrencyProvider>
 		</CartProvider>
 	);
 }
