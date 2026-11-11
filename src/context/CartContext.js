@@ -1,11 +1,22 @@
-import { createContext, useContext, useReducer } from "react";
-import { cartReducer, initialCartState } from "../reducers/cartReducer";
+import { createContext, useContext, useEffect, useReducer } from "react";
+import {
+	cartReducer,
+	initialCartState,
+	loadCartData,
+} from "../reducers/cartReducer";
 
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-	const [cartState, cartDispatch] = useReducer(cartReducer, initialCartState);
+	const [cartState, cartDispatch] = useReducer(
+		cartReducer,
+		initialCartState,
+		loadCartData,
+	);
 
+	useEffect(() => {
+		localStorage.setItem("cartData", JSON.stringify(cartState));
+	}, [cartState]);
 	const totalItems = cartState.items.reduce(
 		(total, item) => total + item.quantity,
 		0,
@@ -16,7 +27,12 @@ export const CartProvider = ({ children }) => {
 	);
 	return (
 		<CartContext.Provider
-			value={{ items: cartState.items, dispatch: cartDispatch, totalItems, totalPrice }}
+			value={{
+				items: cartState.items,
+				dispatch: cartDispatch,
+				totalItems,
+				totalPrice,
+			}}
 		>
 			{children}
 		</CartContext.Provider>

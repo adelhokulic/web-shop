@@ -2,6 +2,17 @@ export const initialCartState = {
 	items: [],
 };
 
+export const loadCartData = () => {
+	const cartData = localStorage.getItem("cartData");
+	if (cartData) {
+		try {
+			return JSON.parse(cartData);
+		} catch (error) {
+			return initialCartState;
+		}
+	} else return initialCartState;
+};
+
 export const cartReducer = (state, action) => {
 	switch (action.type) {
 		case "ADD_ITEM": {
