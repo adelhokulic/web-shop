@@ -3,6 +3,7 @@ import {
 	cartReducer,
 	initialCartState,
 	loadCartData,
+	coupons,
 } from "../reducers/cartReducer";
 
 export const free_shipping_price = 100;
@@ -28,12 +29,19 @@ export const CartProvider = ({ children }) => {
 		(total, item) => total + item.quantity * item.price,
 		0,
 	);
-	const shippingCost = totalPrice >= free_shipping_price ? 0 : shipping_cost;
-	const totalOrderPrice = totalPrice + shippingCost;
+	const discountPercent = cartState.coupon ? coupons[cartState.coupon] : 0;
+	const discountPrice = (totalPrice * discountPercent) / 100;
+	const priceWithDiscount = totalPrice - discountPrice;
+
+	const shippingCost =
+		priceWithDiscount >= free_shipping_price ? 0 : shipping_cost;
+	const totalOrderPrice = priceWithDiscount + shippingCost;
+
 	const leftToFreeShipping = Math.max(
-		free_shipping_price - totalPrice,
+		free_shipping_price - priceWithDiscount,
 		0,
 	);
+
 	return (
 		<CartContext.Provider
 			value={{
@@ -45,6 +53,10 @@ export const CartProvider = ({ children }) => {
 				totalOrderPrice,
 				leftToFreeShipping,
 				free_shipping_price,
+				coupon: cartState.coupon,
+				discountPercent,
+				discountPrice,
+				priceWithDiscount,
 			}}
 		>
 			{children}
