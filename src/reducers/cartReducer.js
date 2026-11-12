@@ -1,5 +1,12 @@
+export const coupons = {
+	SAVE10: 10,
+	SAVE20: 20,
+	SAVE30: 30,
+};
+
 export const initialCartState = {
 	items: [],
+	coupon: null,
 };
 
 export const loadCartData = () => {
@@ -72,6 +79,15 @@ export const cartReducer = (state, action) => {
 			};
 		case "CLEAR_CART":
 			return { ...state, items: [] };
+
+		case "APPLY_COUPON":
+			if (coupons[action.payload.toUpperCase().trim()]) {
+				return { ...state, coupon: action.payload.toUpperCase().trim() };
+			}
+			return state;
+
+		case "REMOVE_COUPON":
+			return { ...state, coupon: null };
 		default:
 			return state;
 	}

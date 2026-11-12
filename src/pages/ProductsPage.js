@@ -46,9 +46,9 @@ const ProductsPage = () => {
 		<main className="products-page">
 			<header className="products-page__header">
 				<div>
-					<h1 className="products-page__title">Web Shop</h1>
+					<h1 className="products-page__title">Discover our products</h1>
 					<p className="products-page__subtitle">
-						Find a product and add it to your cart
+						Pick a category and find something you'll love
 					</p>
 				</div>
 
