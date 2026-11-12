@@ -6,6 +6,7 @@ import { CartProvider } from "./context/CartContext";
 import Navbar from "./components/Navbar";
 import CartPage from "./pages/CartPage";
 import { CurrencyProvider } from "./context/CurrencyContext";
+import SingleProductPage from "./pages/SingleProductPage";
 
 function App() {
 	return (
@@ -16,6 +17,7 @@ function App() {
 					<Routes>
 						<Route path="/" element={<ProductsPage />} />
 						<Route path="/cart" element={<CartPage />} />
+						<Route path="/product/:id" element={<SingleProductPage />} />
 					</Routes>
 				</BrowserRouter>
 			</CurrencyProvider>

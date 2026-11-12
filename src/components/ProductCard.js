@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { useCurrency } from "../context/CurrencyContext";
 
@@ -7,18 +8,23 @@ const ProductCard = ({ product }) => {
 	return (
 		<article className="product-card">
 			<div className="product-card__image-wrap">
-				<img
-					className="product-card__image"
-					src={product.thumbnail}
-					alt={product.title}
-					loading="lazy"
-				/>
+				<Link to={`/product/${product.id}`}>
+					<img
+						className="product-card__image"
+						src={product.thumbnail}
+						alt={product.title}
+						loading="lazy"
+					/>
+				</Link>
+
 				<span className="product-card__category">{product.category}</span>
 			</div>
 
 			<div className="product-card__body">
 				<p className="product-card__brand">{product.brand}</p>
-				<h2 className="product-card__title">{product.title}</h2>
+				<Link to={`/product/${product.id}`}>
+					<h2 className="product-card__title">{product.title}</h2>
+				</Link>
 
 				<div className="product-card__meta">
 					<span className="product-card__rating">★ {product.rating}</span>

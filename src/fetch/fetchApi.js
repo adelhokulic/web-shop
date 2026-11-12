@@ -22,3 +22,10 @@ export const fetchProductsByCategories = async (selectedCategory) => {
 	const data = response.data;
 	return data;
 };
+export const fetchProductById = async (id) => {
+	const response = await axios.get(
+		`${process.env.REACT_APP_PRODUCTS_API_URL}/${id}`,
+	);
+	const data = response.data;
+	return data;
+};
