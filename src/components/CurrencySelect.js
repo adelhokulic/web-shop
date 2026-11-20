@@ -1,13 +1,15 @@
+import { Form } from "react-bootstrap";
 import { currencies, useCurrency } from "../context/CurrencyContext";
 
 const CurrencySelect = () => {
 	const { currency, updateCurrency } = useCurrency();
 	return (
 		<div className="currency-select">
-			<label htmlFor="currency" className="currency-select__label">
+			<Form.Label htmlFor="currency" className="visually-hidden">
 				Currency
-			</label>
-			<select
+			</Form.Label>
+			<Form.Select
+				size="sm"
 				value={currency}
 				onChange={(e) => updateCurrency(e.target.value)}
 				id="currency"
@@ -20,7 +22,7 @@ const CurrencySelect = () => {
 						</option>
 					);
 				})}
-			</select>
+			</Form.Select>
 		</div>
 	);
 };

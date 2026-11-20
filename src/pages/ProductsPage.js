@@ -4,6 +4,7 @@ import {
 	fetchProducts,
 	fetchProductsByCategories,
 } from "../fetch/fetchApi";
+import { Alert, Button, Container } from "react-bootstrap";
 import ProductList from "../components/ProductList";
 
 const ProductsPage = () => {
@@ -43,43 +44,52 @@ const ProductsPage = () => {
 	}, [selectedCategory]);
 
 	return (
-		<main className="products-page">
-			<header className="products-page__header">
-				<div>
-					<h1 className="products-page__title">Discover our products</h1>
-					<p className="products-page__subtitle">
+		<main>
+			<section className="hero">
+				<Container>
+					<p className="hero__eyebrow">Web Shop</p>
+					<h1 className="hero__title">Discover our products</h1>
+					<p className="hero__subtitle">
 						Pick a category and find something you'll love
 					</p>
-				</div>
+				</Container>
+			</section>
 
-				<div className="products-page__filter">
-					<label htmlFor="category" className="products-page__label">
-						Category
-					</label>
-					<select
-						id="category"
-						className="products-page__select"
-						value={selectedCategory}
-						onChange={(e) => setSelectedCategory(e.target.value)}
+			<Container className="page">
+				<div className="category-bar" role="group" aria-label="Category">
+					<Button
+						type="button"
+						variant={selectedCategory === "" ? "primary" : "outline-secondary"}
+						className="category-pill"
+						aria-pressed={selectedCategory === ""}
+						onClick={() => setSelectedCategory("")}
 					>
-						<option value="">All</option>
-						{categories.map((category) => {
-							return (
-								<option key={category} value={category}>
-									{category}
-								</option>
-							);
-						})}
-					</select>
+						All
+					</Button>
+					{categories.map((category) => {
+						return (
+							<Button
+								key={category}
+								type="button"
+								variant={
+									selectedCategory === category ? "primary" : "outline-secondary"
+								}
+								className="category-pill"
+								aria-pressed={selectedCategory === category}
+								onClick={() => setSelectedCategory(category)}
+							>
+								{category}
+							</Button>
+						);
+					})}
 				</div>
-			</header>
-			{errorMessage && (
-				<p className="products-page__message products-page__message--error">
-					{errorMessage}
-				</p>
-			)}
 
-			<ProductList products={products} />
+				{errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
+
+				<p className="results-count">{products.length} products</p>
+
+				<ProductList products={products} />
+			</Container>
 		</main>
 	);
 };

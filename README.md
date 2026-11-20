@@ -1,15 +1,23 @@
 # Web Shop
 
-A responsive online store built with React. Products come from the [DummyJSON](https://dummyjson.com/docs/products) API, and the cart is global state managed with **Context API + `useReducer`**, persisted in `localStorage`.
+A responsive online store built with React and React-Bootstrap. Products come from the [DummyJSON](https://dummyjson.com/docs/products) API, and the cart is global state managed with **Context API + `useReducer`**, persisted in `localStorage`.
+
+**[Live demo](https://web-shop-lilac-omega.vercel.app/)**
 
 The project focuses on clean state management: one reducer owns every change to the cart, components read shared state through custom hooks instead of prop drilling, and all totals are derived from the cart contents instead of being stored separately.
 
 ## Features
 
 **Products**
-- Product list loaded from DummyJSON, with category filter
+- Product grid loaded from DummyJSON, with category filter pills
 - Product details page with an image gallery (`/product/:id`)
 - Loading and error states (e.g. a product that does not exist)
+
+**Design**
+- Fully responsive, mobile-first layout (1 to 4 product columns, collapsible navbar)
+- Visual style shared with my [portfolio](https://github.com/adelhokulic/cv-portfolio): same colors, radius, shadows and content width
+- Subtle motion: cards fade in one after another, lift on hover, sticky order summary
+- Animations are turned off for users who prefer reduced motion
 
 **Cart**
 - Add to cart from the product list or the product page
@@ -34,7 +42,8 @@ The project focuses on clean state management: one reducer owns every change to 
 | State | Context API, `useReducer`, `useState` |
 | Data fetching | Axios, `async/await`, DummyJSON REST API |
 | Persistence | `localStorage` |
-| Styling | Custom CSS (CSS variables, Grid, Flexbox), mobile-first |
+| UI components | React-Bootstrap (Bootstrap 5.3), themed through Bootstrap CSS variables |
+| Styling | Custom CSS on top of Bootstrap (CSS variables, Grid, Flexbox, keyframe animations), mobile-first |
 | Tooling | Create React App, ESLint, Prettier, Git |
 
 ## Architecture
@@ -51,7 +60,7 @@ src/
 │   └── fetchApi.js         # All API calls in one place
 ├── pages/             # ProductsPage, SingleProductPage, CartPage
 ├── App.js             # Providers and routes
-└── App.css            # All styles, organised by component
+└── App.css            # Theme (Bootstrap overrides) and component styles
 ```
 
 ### Cart state and actions
@@ -90,7 +99,7 @@ The reducer never mutates state. Every action returns a new object built with sp
 **Requirements:** Node.js 18+ and npm.
 
 ```bash
-git clone https://github.com/<your-username>/web-shop.git
+git clone https://github.com/adelhokulic/web-shop.git
 cd web-shop
 npm install
 npm start
@@ -124,10 +133,12 @@ REACT_APP_PRODUCTS_FROM_CATEGORY_API_URL=https://dummyjson.com/products/category
 - Syncing state with `localStorage` through `useEffect`
 - Handling loading, error and "not found" states for async data
 - Dynamic routes with `useParams`
+- Building layouts with React-Bootstrap (`Navbar`, `Row`/`Col`, `Card`, `Form`, `ProgressBar`) and theming Bootstrap with CSS variables instead of overriding every class
 
 ## Possible Improvements
 
 - Unit tests for the reducer and integration tests for the cart flow (React Testing Library)
 - Product search and sorting
 - Live exchange rates from an API instead of hardcoded rates
+- Dark theme, matching the portfolio
 - Migration to TypeScript
